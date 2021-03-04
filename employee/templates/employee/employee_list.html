@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+{% load static %}
+
+
+<head>
+	{% block title %}{{employee.name}}{% endblock %}
+</head>
+
+<body>				
+	{% block employee %}active{% endblock %}
+	{% block employee_no_js %}active{% endblock %}
+
+
+	{% block body %}
+		<div class="row center pos-rel mt-2 t-20">
+			{% for employee in employee_list %}
+			  <div class="col-lg-3 col-md-6 mb-4">
+			    <div class="card">
+
+			      <div class="view overlay">
+			        <a href="{% url 'employee:detail' employee.slug %}">
+			        	<img class="img-fluid mh-300" src="{{employee.picture.url}}" alt="{{employee.name}}">
+			        </a>
+			      </div>
+
+			      <div class="card-list-body">
+			        <a href="{% url 'employee:detail' employee.slug %}" class="dark-grey-text lead font-weight-bold text-26">{{employee.name}}</a>
+			        <span class="font-weight-bold blue-text text-20">{{employee.date_started}}</span>
+			      </div>
+
+			    </div>
+			  </div>
+			{% endfor %}
+		</div>
+
+		<center class="mt-3"><a align="center" href="{% url 'employee:home' %}">Go back to home page</a></center>
+	{% endblock body %}
+
+</body>

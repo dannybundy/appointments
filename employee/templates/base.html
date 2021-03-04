@@ -1,0 +1,155 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- CSS -->
+	<link rel="stylesheet" href="{% static 'employee/fontawesome/css/all.css' %}">
+	<link rel="stylesheet" href="{% static 'employee/bootstrap/css/bootstrap.min.css' %}">
+	
+	<!-- Used for the calendar -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+	<link rel="stylesheet" href="{% static 'employee/css/base.css' %}">
+	<link rel="stylesheet" href="{% static 'employee/css/employee.css' %}">
+
+	{% block css %} {% endblock css %}
+	<title>{% block title %} {% endblock title %}</title>
+</head>
+
+<body>
+	<noscript>
+		<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+			<p>If you want the full experience, turn JavaScript back on baby.</p>
+		</div>
+	</noscript>
+
+	<!-- NavBar -->
+	<div class="script-element">
+		<nav class="navbar navbar-expand-lg navbar-dark bt-color1 mb-3 mb-md-5">
+			<a class="navbar-brand" href="{% url 'employee:home' %}">Business Name</a>
+
+				<!-- JS Enabled -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse ml-3" id="navbarSupportedContent">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item dropdown {% block home %} {% endblock %}">
+							<a class="nav-link" href="{% url 'employee:home' %}">Home</a>
+						</li>
+						<li class="nav-item dropdown {% block about_us %} {% endblock %}">
+							<a class="nav-link" href="{% url 'employee:about_us' %}">About Us!</a>
+						</li>
+						<li class="nav-item dropdown {% block our_employees %} {% endblock %}">
+							<a class="nav-link" href="{% url 'employee:list' %}">Our Employees</a>
+						</li>
+						<li class="nav-item dropdown {% block schedule %} {% endblock %}">
+							<a class="nav-link" href="{% url 'employee:schedule' %}">Schedule an appointment</a>
+						</li>
+						{% if user.is_superuser %}
+							<li class="nav-item dropdown {% block admin %} {% endblock %}">
+								<a class="nav-link" href="{% url 'admin:login' %}">Admin</a>
+							</li>
+						{% endif %}
+						{% if user.is_authenticated%}
+							<li class="nav-item dropdown">
+								<a class="nav-link" href="{% url 'admin:logout' %}">Log out</a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+		</nav>
+	</div>
+
+	<!-- JS Disabled -->
+	<noscript class="">
+		<nav class="navbar navbar-expand-lg navbar-dark bt-color1">
+			<a class="navbar-brand" href="{% url 'employee:home' %}">Business Name</a>
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item {% block home_no_js %} {% endblock %}">
+						<a class="nav-link" href="{% url 'employee:home' %}">Home</a>
+					</li>
+					<li class="nav-item {% block about_us_no_js %} {% endblock %}">
+						<a class="nav-link" href="{% url 'employee:about_us' %}">About Us!</a>
+					</li>
+					<li class="nav-item {% block our_employees_no_js %} {% endblock %}">
+						<a class="nav-link" href="{% url 'employee:list' %}">Our Employees</a>
+					</li>
+						<li class="nav-item {% block schedule_no_js %} {% endblock %}">
+							<a class="nav-link" href="{% url 'employee:schedule' %}">Schedule an appointment</a>
+						</li>
+					{% if user.is_superuser %}
+						<li class="nav-item {% block admin_no_js %} {% endblock %}">
+							<a class="nav-link" href="{% url 'admin:login' %}">Admin</a>
+						</li>
+					{% endif %}
+					{% if user.is_authenticated%}
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'admin:logout' %}">Log out</a>
+						</li>
+					{% endif %}
+				</ul>
+		</nav>
+	</noscript>
+
+	<!-- Messages -->
+	<span id="random-error"></span>
+
+	{% if messages %}
+		{% for message in messages %}
+		<div class="alert alert-{{message.tags}} alert-dismissible fade show text-center" role="alert">
+			{{message|safe}}
+			<button type="button" class="close script-element" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		{% endfor %}
+	{% endif %}
+
+
+	<!-- Block Body -->
+	<div class="container-fluid">{% block body %} {% endblock body %}</div>
+
+	<!-- Footer -->
+	<footer class="container-fluid mt-5">
+		<div class="row bt-color2 text-white">
+			<div class="col-sm-6 col-lg-4 mt-3 mb-3 pl-4 pl-md-5">
+				<h3>Contact Us</h3>
+				<span>(626)-398-2102</span>
+				<br>template-email@gmail.com
+			</div>
+
+			<div class="col-sm-6 col-lg-5 mt-sm-3 mb-3 pl-4 pl-md-5">
+				<h3>My Social Profile</h3>
+				<a href=""><i class="fab fa-facebook mr-2"></i></a>
+				<a href=""><i class="fab fa-twitter mr-2" style="color: #0084b4"></i></a>
+				<a href=""><i class="fab fa-instagram"></i></a>
+			</div>
+		</div>
+
+		<div class="row bt-color1">
+			<center class="col-12 pb-3 pt-3 text-14">Gaabeeg &#169;</center>
+		</div>
+	</footer>
+
+	<!-- Script -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script src="{% static 'employee/bootstrap/js/bootstrap.min.js' %}"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript" src="{% static 'employee/js/reusable_code/token.js' %}"></script>
+	<script type="text/javascript" src="{% static 'employee/js/reusable_code/functions.js' %}"></script>
+
+	<script type="text/javascript">
+		$(".script-element").show()
+		verify_url=$("#verify_url").attr('href')
+	</script>
+	{% block javascript %} {% endblock javascript %}
+</body>
+</html>

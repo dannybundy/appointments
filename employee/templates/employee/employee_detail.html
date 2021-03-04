@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+{% load static %}
+
+
+<head>
+	{% block title %}{{employee.name}}{% endblock %}
+</head>
+
+<body>				
+	{% block employee %}active{% endblock %}
+	{% block employee_no_js %}active{% endblock %}
+
+
+	{% block body %}
+		<div class="center p-md-5 border-l-grey mw-400 border-round">
+			<div class="row">
+				<div class="col-md-8">
+					<h3>{{employee.name}}</h3>
+					<img class="img-fluid mh-300" src="{{employee.picture.url}}" alt="{{employee.name}}">
+
+					<!-- Span for image -->
+					<p class="text-14 font-weight-bold mt-1">{{employee.date_started}}</p>
+					
+					<h4>{{employee.info}}</h4>
+				</div>
+
+			</div>
+			<hr>
+		</div>
+
+		<h4 align="center" class="mt-5">Work</h4>
+
+		<div class="row center">
+			{% for showcase in showcase_list %}
+			  <div class="col-lg-3 col-md-6 mb-4">
+			    <div class="card">
+
+				<div class="view overlay">
+					<img class="img-fluid mh-300" src="{{showcase.image.url}}" alt="{{showcase.title}}">
+				</div>
+
+			      <div class="card-list-body">
+			        <p class="dark-grey-text lead font-weight-bold text-20">{{showcase.title}}</p>
+			      </div>
+
+			    </div>
+			  </div>
+			{% endfor %}
+		</div>
+
+
+		<center class="mt-4"><a align="center" href="{% url 'employee:list' %}">Go back to employee home page</a></center>
+	{% endblock body %}
+</body>

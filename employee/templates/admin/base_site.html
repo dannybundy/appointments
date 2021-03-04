@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+<head>
+	{% block title %}Website Name | Admin site{% endblock %}
+	{% block admin %}active{% endblock %}
+	{% block admin_no_js %}active{% endblock %}
+
+	{% block extrastyle %}
+		<link rel="stylesheet" href="{% static 'employee/css/admin_color.css' %}">
+		<style rel="stylesheet" type="text/css">
+			#breadcrumb-base {
+				position: relative;
+				bottom: 10px;
+			}
+		</style>
+    {% endblock %}
+</head>
+
+
+<body>
+	{% block branding %}<a class="navbar-brand" href="{% url 'employee:home' %}">Website Name<img src="" alt=""></a>{% endblock %}
+	
+	{% block footer %}
+
+	{% endblock %}
+</body>

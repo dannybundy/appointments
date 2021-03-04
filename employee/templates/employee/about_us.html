@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+{% load static %}
+
+
+<head>
+	{% block title %}About Us!{% endblock title %}
+</head>
+
+<body>
+	{% block about_us %}active{% endblock %}
+	{% block about_us_no_js %}active{% endblock %}
+
+	{% block body %}
+		<h3 align="center">About Us!</h3>
+
+		<div class="center mw-1000 border-l-grey border-round">
+			<h2 class="mt-2 mb-3 font-weight-bold"><center>Business Name</center></h4>
+				
+			<h4 class="mt-2 mb-3 font-weight-bold">Location</h4>
+
+			<h4 class="mt-2 mb-3 font-weight-bold">Prices</h4>
+
+			<h4 class="mt-2 mb-3 font-weight-bold">Hours</h4>
+
+
+		</div>
+
+	{% endblock body %}
+</body>

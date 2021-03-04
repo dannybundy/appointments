@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+{% load static %}
+
+
+<head>
+	{% block title %}Welcome to Website{% endblock title %}
+</head>
+
+<body>
+	{% block home %}active{% endblock %}
+	{% block home_no_js %}active{% endblock %}
+
+	{% block body %}
+
+		<div class="center mw-700">
+			<center>
+				<h3>Welcome!</h3>
+				<img class="img-fluid mh-400 mb-3" src="" alt="">
+			</center>
+
+			<div class="center mw-700 border-l-grey border-round">
+				<h4 class="font-weight-bold" align="center">Our Business</h4>
+				<b>
+					Etiam magna sapien, consectetur vitae nisi quis, varius iaculis elit. Phasellus neque nibh, molestie sed vulputate quis, ultrices quis diam. Duis tempus convallis mauris et lobortis. Cras placerat consequat tempor. Ut ut justo purus. Sed et tincidunt metus. Mauris mollis quis lacus a laoreet.
+				</b>
+				<hr>
+
+			</div>			
+		</div>
+
+	{% endblock body %}	
+</body>

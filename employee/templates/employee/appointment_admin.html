@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load employee_template_tags %}
+{% load static %}
+
+
+<head>
+	{% block title %}Appointments Admin{% endblock title %}
+</head>
+
+<body>
+	{% block appointments_admin %}active{% endblock %}
+	{% block appointments_admin_no_js %}active{% endblock %}
+
+	{% block body %}
+		<h3 align="center">Appointments Admin</h3>
+
+		<form method="POST" class="center mw-400">
+			{% csrf_token %}
+			<h4>Today's Date: <span class="text-20">{{today}}</span></h4>
+			<h4>Dates</h4>
+			{{form.date_options|as_crispy_field}}
+
+			<h4>Times</h4>
+			{{form.time_options|as_crispy_field}}
+			
+			<h4>Employees</h4>
+			{{form.employee_options|as_crispy_field}}
+			<center><button type="submit" class="btn bt-color1">Create Appointments</button></center>
+
+		</form>
+
+	{% endblock body %}
+
+	{% block javascript %}
+	{% endblock %}
+
+</body>
